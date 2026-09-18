@@ -85,6 +85,7 @@ A connected operations platform that gives people better visibility and tools to
     description: "A consulting website with clearer service positioning and a reported 76% increase in search impressions.",
     tags: ["Website", "Web Design", "SEO", "Consulting"],
     image: "/images/projects/cyinov1.png",
+    mockup: "/images/projects/cyinov1.png",
     cover: "/images/projects/cyinov.png",
     website: "https://cyinov.com/",
     highlight: { value: "+76%", label: "Search impressions" },
@@ -222,6 +223,7 @@ Hands-on experience building and operating a platform with an active community.`
     description: "A distinctive personal portfolio for a data scientist, shaped around their work and personality.",
     tags: ["Website", "Web Design", "Branding", "Portfolio"],
     image: "/images/projects/portfolio1.png",
+    mockup: "/images/projects/portfolio1.png",
     cover: "/images/projects/portfolio.jpeg",
     highlight: { value: "Personal", label: "Research-led portfolio design" },
     content: `Case Study: Academia Portfolio

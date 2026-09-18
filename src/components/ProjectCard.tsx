@@ -8,7 +8,7 @@ export default function ProjectCard({ project, onTag, compact = false }: { proje
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-[24px] bg-[#0a0b0d] shadow-[0_18px_45px_-30px_rgba(0,0,0,0.4)]">
       <Link href={`/projects/${project.id}`} aria-label={`View ${project.title} case study`} className="group relative block aspect-[16/10] overflow-hidden bg-[#e9e9e9]">
-        {project.mockup ? <Image src={project.mockup} alt={`${project.title} app mockup${project.id === 4 ? " — earlier Freso concept" : ""}`} fill sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 400px" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" unoptimized /> : project.gallery ? (
+        {project.mockup ? <Image src={project.mockup} alt={`${project.title} product mockup${project.id === 4 ? " — earlier Freso concept" : ""}`} fill sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 600px" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" unoptimized /> : project.gallery ? (
           <div className="absolute inset-0 flex justify-center gap-4 bg-[#eeeaf4] p-4">
             {project.gallery.map((shot) => <div key={shot.src} className="relative h-full w-[42%]"><Image src={shot.src} alt={shot.alt} fill sizes="(max-width: 768px) 40vw, 240px" className="object-contain" unoptimized /></div>)}
           </div>
