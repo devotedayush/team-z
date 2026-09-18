@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import BrandLogo from "./BrandLogo";
-import { CONTACT_EMAIL } from "@/lib/seo";
+import { CONTACT_EMAIL, WHATSAPP_URL } from "@/lib/seo";
 
 const footerLinks = {
   company: [
@@ -39,10 +39,12 @@ export default function Footer() {
             your project.
           </h2>
           <Link
-            href={`mailto:${CONTACT_EMAIL}`}
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block bg-[#00DD88] text-[#1a1a1a] px-8 py-4 rounded-[30px] font-semibold transition-transform duration-200 hover:scale-105"
           >
-            Contact Us
+            Chat on WhatsApp
           </Link>
         </div>
 

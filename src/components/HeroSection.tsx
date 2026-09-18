@@ -4,13 +4,11 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import GetStartedDialog from "./GetStartedDialog";
+import { WHATSAPP_URL } from "@/lib/seo";
 
 const G = "#00DD88";
 
 export default function HeroSection() {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
     <>
@@ -97,13 +95,13 @@ export default function HeroSection() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="flex flex-wrap gap-x-7 gap-y-3 items-center"
             >
-              <button
-                onClick={() => setIsDialogOpen(true)}
+              <a
+                href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="Let's talk on WhatsApp"
                 className="group inline-flex items-center gap-2 bg-[#00DD88] text-[#0a0a0a] px-6 py-4 rounded-full font-semibold text-base transition-all duration-300 hover:shadow-[0_12px_34px_-8px_rgba(0,221,136,0.6)] hover:-translate-y-0.5"
               >
                 Let's talk
                 <ArrowUpRight className="w-[18px] h-[18px] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </button>
+              </a>
               <Link
                 href="/projects"
                 className="inline-flex min-h-11 items-center gap-2 text-white font-medium text-sm underline underline-offset-8 decoration-white/40 hover:decoration-[#00DD88]"
@@ -114,11 +112,6 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Get Started Dialog */}
-        <GetStartedDialog
-          isOpen={isDialogOpen}
-          onClose={() => setIsDialogOpen(false)}
-        />
       </div>
     </>
   );

@@ -1,9 +1,7 @@
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
-import { useState } from "react";
-
-import GetStartedDialog from "@/components/GetStartedDialog";
+import { WHATSAPP_URL } from "@/lib/seo";
 
 export default function StartProjectButton({
   label = "Start a project",
@@ -16,15 +14,16 @@ export default function StartProjectButton({
   inquiryContext?: string;
   className?: string;
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const url = new URL(WHATSAPP_URL);
+  const context = inquiryContext || initialService;
+  if (context) url.searchParams.set("text", `Hi Ments Services, I'd like to discuss: ${context}.`);
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)} className={className}>
+      <a href={url.toString()} target="_blank" rel="noopener noreferrer" aria-label={`${label} on WhatsApp`} className={className}>
         {label}
         <ArrowUpRight className="h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-      </button>
-      <GetStartedDialog isOpen={isOpen} onClose={() => setIsOpen(false)} initialService={initialService} inquiryContext={inquiryContext} />
+      </a>
     </>
   );
 }
