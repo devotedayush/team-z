@@ -3,14 +3,14 @@ import type { Metadata } from "next";
 import { breadcrumbLd, jsonLdScript } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Our Work: Web, App & AI Products We've Shipped",
+  title: "Our Work: Industry & Side Projects",
   description:
-    "A look at products TEAMZ has designed, built, and shipped, web apps, mobile apps, and AI automation for startups and growing businesses, including Exatone, Freso, Cyinov, and Kay Sons.",
+    "Explore Ments Services projects by category and tag: mobile apps, logistics platforms, Shopify storefronts, SEO, and AI automation.",
   alternates: { canonical: "/projects" },
   openGraph: {
-    title: "Our Work: Web, App & AI Products We've Shipped",
+    title: "Industry & Side Projects | Ments Services",
     description:
-      "Real products TEAMZ has built and shipped for startups and growing businesses.",
+      "Products from Ments Services, built and delivered by our technology team, TEAMZ.",
     url: "/projects",
   },
 };

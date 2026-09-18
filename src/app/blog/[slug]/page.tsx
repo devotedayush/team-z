@@ -236,7 +236,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             Have something to build?
           </h3>
           <p className="mt-3 max-w-[440px] text-white/65">
-            TEAMZ designs, builds, and ships web apps, mobile apps, and AI
+            Ments Services designs, builds, and ships web apps, mobile apps, and AI
             automation, end to end. Let&apos;s talk about your idea.
           </p>
           <StartProjectButton />

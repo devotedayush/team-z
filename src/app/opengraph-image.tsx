@@ -1,10 +1,15 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/seo";
 
-export const alt = "TEAMZ: Web, App & AI Product Studio";
+export const alt = `${SITE_NAME}: ${SITE_TAGLINE}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OpengraphImage() {
+export default async function OpengraphImage() {
+  const logo = await readFile(join(process.cwd(), "public/images/brand/ments-green-white.svg"));
+  const logoSrc = `data:image/svg+xml;base64,${logo.toString("base64")}`;
   return new ImageResponse(
     (
       <div
@@ -16,28 +21,24 @@ export default function OpengraphImage() {
           justifyContent: "space-between",
           background:
             "radial-gradient(120% 120% at 18% 12%, #0f231b 0%, #0a0b0d 55%)",
-          padding: "80px",
+          padding: "64px 80px",
           fontFamily: "sans-serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+          {/* ImageResponse renders native images, not next/image components. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={logoSrc} alt="Ments" width={262} height={80} />
           <div
             style={{
-              width: "18px",
-              height: "18px",
-              borderRadius: "9999px",
-              background: "#00DD88",
-            }}
-          />
-          <div
-            style={{
-              color: "#9aa0a6",
-              fontSize: "26px",
-              letterSpacing: "6px",
+              color: "#ffffff",
+              fontSize: "30px",
+              borderLeft: "1px solid #53615a",
+              paddingLeft: "24px",
               fontWeight: 600,
             }}
           >
-            PRODUCT STUDIO
+            Services
           </div>
         </div>
 
@@ -45,7 +46,7 @@ export default function OpengraphImage() {
           <div
             style={{
               color: "#ffffff",
-              fontSize: "88px",
+              fontSize: "76px",
               fontWeight: 700,
               lineHeight: 1.05,
               letterSpacing: "-3px",
@@ -53,18 +54,18 @@ export default function OpengraphImage() {
               flexWrap: "wrap",
             }}
           >
-            <span>We build digital products that&nbsp;</span>
-            <span style={{ color: "#00DD88" }}>scale.</span>
+            <span>Custom software, apps &amp;&nbsp;</span>
+            <span style={{ color: "#00DD88" }}>AI automation.</span>
           </div>
           <div
             style={{
               color: "#b9bec4",
-              fontSize: "34px",
+              fontSize: "28px",
               lineHeight: 1.35,
               display: "flex",
             }}
           >
-            Web apps, mobile apps, product design, and AI automation, end to end.
+            From your first idea to launch and ongoing support.
           </div>
         </div>
 
@@ -78,17 +79,15 @@ export default function OpengraphImage() {
           <div
             style={{
               color: "#ffffff",
-              fontSize: "44px",
-              fontWeight: 700,
-              letterSpacing: "-1px",
+              fontSize: "23px",
+              fontWeight: 400,
               display: "flex",
             }}
           >
-            team
-            <span style={{ color: "#00DD88" }}>-z</span>
+            Delivered by TEAMZ, our technology team.
           </div>
-          <div style={{ color: "#7f868d", fontSize: "28px", display: "flex" }}>
-            teamz.ments.app
+          <div style={{ color: "#a5ada9", fontSize: "23px", display: "flex" }}>
+            {new URL(SITE_URL).host}
           </div>
         </div>
       </div>

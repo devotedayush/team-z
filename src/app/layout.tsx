@@ -5,19 +5,20 @@ import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import {
   SITE_URL,
   SITE_NAME,
+  SITE_TAGLINE,
   SITE_DESCRIPTION,
   SITE_KEYWORDS,
   siteGraphLd,
   jsonLdScript,
 } from "@/lib/seo";
 
-const TITLE_DEFAULT = "TEAMZ: Web, App & AI Product Studio";
+const TITLE_DEFAULT = `${SITE_NAME}: ${SITE_TAGLINE}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: TITLE_DEFAULT,
-    template: "%s | TEAMZ",
+    template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
   keywords: SITE_KEYWORDS,

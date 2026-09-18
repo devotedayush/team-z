@@ -1,11 +1,12 @@
 import BlogSection from "@/components/BlogSection";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
+import GettingStartedSection from "@/components/GettingStartedSection";
 import ProjectsSection from "@/components/ProjectsSection";
-import QuoteSection from "@/components/QuoteSection";
 import ServicesAccordion from "@/components/ServicesAccordion";
 import TechMarquee from "@/components/TechMarquee";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import WorkingTogether from "@/components/WorkingTogether";
 import { faqLd, jsonLdScript } from "@/lib/seo";
 
 export default function Home() {
@@ -16,10 +17,11 @@ export default function Home() {
         dangerouslySetInnerHTML={jsonLdScript(faqLd())}
       />
       <HeroSection />
-      <TechMarquee />
-      <QuoteSection />
-      <ServicesAccordion />
       <ProjectsSection />
+      <ServicesAccordion />
+      <WorkingTogether compact />
+      <GettingStartedSection />
+      <TechMarquee />
       {/* Subtle shade bifurcation: a soft darker seam at the Our Work boundary
           fades into one cooler tone shared by Testimonials + Insights. */}
       <div className="flex w-screen flex-col items-center bg-[linear-gradient(to_bottom,#eaecf0,#eff0f3_150px)]">

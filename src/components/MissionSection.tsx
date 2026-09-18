@@ -27,7 +27,8 @@ export default function MissionSection() {
           viewport={{ once: true }}
           className="text-lg text-[#555] leading-relaxed mb-6"
         >
-          At Teamz, we believe that great products are built at the intersection of technology and human experience.
+          At Ments Services, we start with the people using your software and the
+          problem your business needs to solve.
         </motion.p>
         <motion.p 
           initial={{ opacity: 0, x: 30 }}
@@ -36,7 +37,9 @@ export default function MissionSection() {
           viewport={{ once: true }}
           className="text-lg text-[#555] leading-relaxed"
         >
-          Our mission is simple: to empower businesses with digital tools that not only solve today's problems but anticipate tomorrow's opportunities. We don't just build software; we build the future.
+          Our delivery team, TEAMZ, brings design, engineering, and AI together
+          to turn that understanding into practical tools, from your first
+          prototype to a product your business can rely on.
         </motion.p>
       </div>
     </section>

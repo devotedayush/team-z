@@ -2,11 +2,11 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import GetStartedDialog from "./GetStartedDialog";
+import BrandLogo from "./BrandLogo";
 
 const navLinks = [
   { label: "Home", href: "/#home", id: "home" },
@@ -73,21 +73,14 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="relative block h-[42px] w-[120px] shrink-0"
-            aria-label="TEAMZ home"
+            className="inline-flex shrink-0"
+            aria-label="Ments Services home"
           >
-            <Image
-              src="/images/teamz-dark-logo-transparent.png"
-              alt="TEAMZ"
-              fill
-              sizes="120px"
-              className="object-contain object-left"
-              priority
-            />
+            <BrandLogo priority />
           </Link>
 
           {/* Desktop links */}
-          <ul className="hidden items-center gap-1 lg:flex rounded-full border border-white/10 bg-white/[0.04] p-1.5">
+          <ul className="hidden items-center gap-1 xl:flex rounded-full border border-white/10 bg-white/[0.04] p-1.5">
             {navLinks.map((link) => {
               const isActive = activeKey === link.id;
               return (
@@ -123,7 +116,7 @@ export default function Navbar() {
           {/* Mobile toggle */}
           <button
             aria-label="Open menu"
-            className="text-white lg:hidden"
+            className="text-white xl:hidden"
             onClick={() => setIsMobileMenuOpen(true)}
           >
             <Menu className="h-7 w-7" />
@@ -142,15 +135,7 @@ export default function Navbar() {
             className="fixed inset-0 z-[100] flex flex-col bg-[#0a0a0a] p-6"
           >
             <div className="flex items-center justify-between">
-              <div className="relative h-[42px] w-[120px]">
-                <Image
-                  src="/images/teamz-dark-logo-transparent.png"
-                  alt="TEAMZ"
-                  fill
-                  sizes="120px"
-                  className="object-contain object-left"
-                />
-              </div>
+              <BrandLogo />
               <button
                 aria-label="Close menu"
                 className="text-white"

@@ -1,22 +1,20 @@
 import type { Metadata } from "next";
 
 import AboutHero from "@/components/AboutHero";
-import ClientLogos from "@/components/ClientLogos";
 import Footer from "@/components/Footer";
-import MissionSection from "@/components/MissionSection";
-import StatsSection from "@/components/StatsSection";
 import TeamSection from "@/components/TeamSection";
+import WorkingTogether from "@/components/WorkingTogether";
 import { breadcrumbLd, jsonLdScript } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "About TEAMZ: The Studio Behind the Products",
+  title: "About Us & Our TEAMZ Delivery Team",
   description:
-    "TEAMZ is a product studio that designs, builds, and ships web apps, mobile apps, and AI automation. Meet the team and the products we have shipped.",
+    "Meet Ments Services and TEAMZ, our design and engineering delivery team. Custom software, applications, and AI automation, from planning through ongoing support.",
   alternates: { canonical: "/about" },
   openGraph: {
-    title: "About TEAMZ: The Studio Behind the Products",
+    title: "Ments Services: Meet Our TEAMZ Delivery Team",
     description:
-      "Meet TEAMZ, the product studio behind Ments, Exatone, Freso, Cyinov, and Kay Sons.",
+      "TEAMZ is the design and engineering team delivering projects at Ments Services.",
     url: "/about",
   },
 };
@@ -34,10 +32,8 @@ export default function AboutPage() {
         )}
       />
       <AboutHero />
-      <StatsSection />
-      <MissionSection />
       <TeamSection />
-      <ClientLogos />
+      <WorkingTogether />
       <Footer />
     </main>
   );
