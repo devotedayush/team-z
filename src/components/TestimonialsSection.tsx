@@ -114,7 +114,6 @@ export default function TestimonialsSection() {
                       alt={t.name}
                       fill
                       className="object-cover"
-                      unoptimized
                     />
                   </span>
                 ) : (

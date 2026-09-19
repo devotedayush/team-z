@@ -201,7 +201,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 fill
                 sizes="(max-width: 768px) 100vw, 760px"
                 className="scale-110 object-cover blur-2xl brightness-[0.45]"
-                unoptimized
               />
               <Image
                 src={post.image}
@@ -210,7 +209,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 sizes="(max-width: 768px) 100vw, 760px"
                 className="object-contain"
                 priority
-                unoptimized
               />
             </>
           ) : (
@@ -221,7 +219,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               sizes="(max-width: 768px) 100vw, 760px"
               className="object-cover"
               priority
-              unoptimized
             />
           )}
         </div>
