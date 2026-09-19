@@ -2,11 +2,11 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import GetStartedDialog from "./GetStartedDialog";
+import { WHATSAPP_URL } from "@/lib/seo";
+import BrandLogo from "./BrandLogo";
 
 const navLinks = [
   { label: "Home", href: "/#home", id: "home" },
@@ -19,7 +19,6 @@ const navLinks = [
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [activeId, setActiveId] = useState("home");
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
@@ -73,21 +72,14 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="relative block h-[42px] w-[120px] shrink-0"
-            aria-label="TEAMZ home"
+            className="inline-flex shrink-0"
+            aria-label="Ments Services home"
           >
-            <Image
-              src="/images/teamz-dark-logo-transparent.png"
-              alt="TEAMZ"
-              fill
-              sizes="120px"
-              className="object-contain object-left"
-              priority
-            />
+            <BrandLogo priority />
           </Link>
 
           {/* Desktop links */}
-          <ul className="hidden items-center gap-1 lg:flex rounded-full border border-white/10 bg-white/[0.04] p-1.5">
+          <ul className="hidden items-center gap-1 xl:flex rounded-full border border-white/10 bg-white/[0.04] p-1.5">
             {navLinks.map((link) => {
               const isActive = activeKey === link.id;
               return (
@@ -112,18 +104,18 @@ export default function Navbar() {
           </ul>
 
           {/* CTA */}
-          <button
-            onClick={() => setIsDialogOpen(true)}
+          <a
+            href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="Get started on WhatsApp"
             className="group hidden shrink-0 items-center gap-1.5 rounded-full bg-[#00DD88] px-5 py-2.5 text-[0.875rem] font-semibold text-[#0a0a0a] transition-all duration-200 hover:shadow-[0_8px_24px_-6px_rgba(0,221,136,0.6)] hover:-translate-y-0.5 active:scale-95 md:inline-flex"
           >
             Get Started
             <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </button>
+          </a>
 
           {/* Mobile toggle */}
           <button
             aria-label="Open menu"
-            className="text-white lg:hidden"
+            className="text-white xl:hidden"
             onClick={() => setIsMobileMenuOpen(true)}
           >
             <Menu className="h-7 w-7" />
@@ -142,15 +134,7 @@ export default function Navbar() {
             className="fixed inset-0 z-[100] flex flex-col bg-[#0a0a0a] p-6"
           >
             <div className="flex items-center justify-between">
-              <div className="relative h-[42px] w-[120px]">
-                <Image
-                  src="/images/teamz-dark-logo-transparent.png"
-                  alt="TEAMZ"
-                  fill
-                  sizes="120px"
-                  className="object-contain object-left"
-                />
-              </div>
+              <BrandLogo />
               <button
                 aria-label="Close menu"
                 className="text-white"
@@ -191,24 +175,20 @@ export default function Navbar() {
             </ul>
 
             <div className="mt-auto">
-              <button
+              <a
+                href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="Get started on WhatsApp"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
-                  setIsDialogOpen(true);
                 }}
-                className="w-full rounded-full bg-[#00DD88] px-7 py-4 text-center text-lg font-semibold text-[#0a0a0a] transition-transform duration-200 active:scale-95"
+                className="block w-full rounded-full bg-[#00DD88] px-7 py-4 text-center text-lg font-semibold text-[#0a0a0a] transition-transform duration-200 active:scale-95"
               >
                 Get Started
-              </button>
+              </a>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <GetStartedDialog
-        isOpen={isDialogOpen}
-        onClose={() => setIsDialogOpen(false)}
-      />
     </>
   );
 }

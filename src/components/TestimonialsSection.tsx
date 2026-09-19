@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
 
@@ -11,65 +11,34 @@ type Testimonial = {
   company: string;
   initials: string;
   avatar?: string; // optional real photo in /public/images/testimonials
-  rating?: number;
 };
 
-// TODO: paste the exact, verbatim client testimonials into `quote`,
-// and update name / role / company / initials (+ optional avatar) per client.
+// Edited for clarity from client feedback supplied by Ments Services.
+// The portfolio client's name and the logistics client's company were not supplied.
 const testimonials: Testimonial[] = [
   {
     quote:
-      "Honestly didn't expect it to come out this clean. I came in with a messy idea and they just got it. The app feels like something a big company would ship, not a small team. Users keep telling me how smooth it is.",
-    name: "Founder",
-    role: "",
-    company: "Exatone",
-    initials: "EX",
-    rating: 5,
-  },
-  {
-    quote:
-      "Our setup was complicated, multiple regions, different roles, the whole thing. They actually understood it, which most devs don't. Now it just works. Order to delivery, no chaos.",
-    name: "Founder",
-    role: "",
-    company: "Freso (Dhaara)",
-    initials: "FR",
-    rating: 5,
-  },
-  {
-    quote:
-      "Felt like they were part of our team, not an agency. Fast replies, no ego, and they cared about the small things. They also shipped when they said they would, which honestly never happens.",
-    name: "Founder",
-    role: "",
-    company: "Ments",
-    initials: "MT",
-    rating: 5,
-  },
-  {
-    quote:
-      "Our old site confused even us. They made it simple and clean and it finally explains what we actually do. Got compliments from clients in the first week.",
-    name: "Founder",
-    role: "",
+      "We asked TEAMZ to build a website for our brand, and they captured our vision better than we had imagined. They were responsive, welcomed our feedback, and delivered in a remarkably short time. The finished website received so much appreciation from our team and professional network. We couldn't be happier with the result.",
+    name: "Samrat Anand",
+    role: "Founder",
     company: "Cyinov Consulting",
-    initials: "CY",
-    rating: 5,
+    initials: "SA",
   },
   {
     quote:
-      "Big build with a lot of moving parts, bidding, tracking, payments. They didn't flinch. The whole thing runs smoothly now and the AI assistant is genuinely useful, not a gimmick.",
-    name: "Founder",
+      "We needed a platform for our logistics team that could support our business as it grows. TEAMZ took the time to understand our operations and build what would actually be useful. They listened to our requirements, used modern technology, and delivered a practical solution at a very reasonable cost. We really appreciated their commitment to getting it right.",
+    name: "Rajesh Anand",
     role: "",
-    company: "Kay Sons",
-    initials: "KL",
-    rating: 5,
+    company: "Logistics platform client",
+    initials: "RA",
   },
   {
     quote:
-      "Most portfolio sites feel the same. Mine actually feels like me. They got my chaotic vibe and somehow made it look intentional. I've had so many people ask who built it.",
-    name: "Owner",
+      "I was amazed by my portfolio. The developer put real thought and research into it and surprised me with a design beyond anything I had imagined. It felt like more than a website: it felt personal. I loved the result, and it helped me land a job shortly afterwards.",
+    name: "Data Scientist",
     role: "",
-    company: "Academia Portfolio",
-    initials: "AP",
-    rating: 5,
+    company: "Portfolio website client",
+    initials: "DS",
   },
 ];
 
@@ -132,17 +101,6 @@ export default function TestimonialsSection() {
               className="flex w-[380px] shrink-0 flex-col rounded-[24px] border border-[#ececec] bg-white p-8 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_-20px_rgba(0,0,0,0.18)] max-md:w-[82vw] max-md:p-7"
             >
               <Quote className="mb-4 h-7 w-7 text-[#00DD88]" fill="#00DD88" />
-
-              {t.rating ? (
-                <div className="mb-4 flex gap-1">
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <Star
-                      key={i}
-                      className="h-[18px] w-[18px] fill-[#00DD88] text-[#00DD88]"
-                    />
-                  ))}
-                </div>
-              ) : null}
 
               <p className="min-h-[96px] flex-1 text-[1.08rem] leading-[1.6] text-[#333]">
                 {t.quote}

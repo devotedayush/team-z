@@ -1,22 +1,23 @@
 // Centralized SEO config + structured data (JSON-LD) builders.
 // Used for search engines (Google/Bing) and rich results.
 
+import { servicePaths } from "./service-paths";
+
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://teamz.ments.app";
 
-export const SITE_NAME = "TEAMZ";
+export const SITE_NAME = "Ments Services";
 
-export const SITE_TAGLINE = "Web, App & AI Product Studio";
+export const SITE_TAGLINE = "Custom Software, Apps & AI Automation";
 
 export const SITE_DESCRIPTION =
-  "TEAMZ is a product studio that designs, builds, and ships web apps, mobile apps, product design, branding, and AI automation, end to end. We turn ideas into live products for startups and growing businesses.";
+  "Custom software and AI automation for the way your business works. Ments Services helps you launch products, improve existing software, and simplify operations, from discovery to ongoing support.";
 
 export const CONTACT_EMAIL = "teamzments@gmail.com";
 
 // WhatsApp contact. Number must be digits only, with country code, no "+" or spaces.
-// TODO: replace the placeholder with the real TEAMZ WhatsApp number.
 export const WHATSAPP_NUMBER = "918800243842";
-export const WHATSAPP_MESSAGE = "Hi TEAMZ, I'd like to discuss a project.";
+export const WHATSAPP_MESSAGE = "Hi Ments Services, I'd like to discuss a project.";
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   WHATSAPP_MESSAGE
 )}`;
@@ -38,9 +39,16 @@ export const SITE_KEYWORDS = [
   "UI UX design agency",
   "hire a development team",
   "TEAMZ",
+  "Ments Services",
 ];
 
 export const SERVICES = [
+  ...servicePaths.map((service) => ({ name: service.title, description: service.description })),
+  {
+    name: "Data & Business Consulting",
+    description:
+      "Business discovery, data and AI strategy, analytics planning, and project guidance with consultant Devansh Jain and our delivery team, TEAMZ.",
+  },
   {
     name: "Web Development",
     description:
@@ -67,19 +75,23 @@ export const SERVICES = [
 // Doubles as FAQ rich results and as citable content for answer engines.
 export const FAQS = [
   {
-    question: "What does TEAMZ do?",
-    answer:
-      "TEAMZ is a product studio that designs, builds, and ships digital products end to end, web apps, mobile apps, product design and branding, and AI automation. One team takes an idea from concept to a live, working product.",
+    question: "Can I start small before committing to a full project?",
+    answer: "Yes. Start with a free 20-minute discovery call. For more detailed planning, choose a paid discovery workshop with its fee credited toward a subsequent build, under terms agreed in your proposal. You can also start with a small paid pilot with scope, price, and success criteria agreed before work begins.",
   },
   {
-    question: "What services does TEAMZ offer?",
+    question: "What does Ments Services do?",
     answer:
-      "TEAMZ offers web development, mobile app development, product design and branding, and AI automation. Because the same team handles design, engineering, and AI, there are no handoffs between separate vendors.",
+      "Ments Services helps businesses build custom software, web and mobile applications, internal tools, and AI automation. Our delivery team, TEAMZ, supports projects from research and planning through launch and ongoing support.",
   },
   {
-    question: "How much does it cost to build an app or website with TEAMZ?",
+    question: "What services does Ments Services offer?",
     answer:
-      "Cost depends on scope. A focused MVP costs less than a multi-feature platform. The biggest cost drivers are the number of features, the platforms you target, and design polish. TEAMZ scopes each project and gives a clear estimate before any work starts.",
+      "We help you launch a new product, simplify business operations, improve existing software, or put AI to practical use. Supporting capabilities include web and mobile development, product design, Shopify, SEO, integrations, automation, and data and business consulting.",
+  },
+  {
+    question: "How much does it cost to build an app or website with Ments Services?",
+    answer:
+      "Cost depends on scope. A focused MVP costs less than a multi-feature platform. The biggest cost drivers are the number of features, the platforms you target, and design polish. Ments Services scopes each project and gives a clear estimate before any work starts.",
   },
   {
     question: "How long does it take to build an MVP?",
@@ -87,19 +99,19 @@ export const FAQS = [
       "Most MVPs take roughly 8 to 16 weeks. The timeline depends mostly on how tightly the scope is defined, a clear, focused feature set ships much faster than one that grows during the build.",
   },
   {
-    question: "Does TEAMZ work with startups and early-stage founders?",
+    question: "Does Ments Services work with startups and early-stage founders?",
     answer:
-      "Yes. TEAMZ works with startups, founders, and growing businesses, often as their full product team, from first idea and MVP through design, launch, and scaling.",
+      "Yes. Ments Services works with startups, founders, and growing businesses, often as their full product team, from first idea and MVP through design, launch, and scaling.",
   },
   {
-    question: "What technologies does TEAMZ use?",
+    question: "What technologies does Ments Services use?",
     answer:
-      "TEAMZ builds with modern, battle-tested tools including Next.js, React, TypeScript, Tailwind CSS, Node.js, and Flutter, plus AI and automation platforms like n8n and Python for custom workflows.",
+      "Our delivery team, TEAMZ, builds with Next.js, React, TypeScript, Tailwind CSS, Node.js, and Flutter, plus AI and automation tools like n8n and Python for custom workflows.",
   },
   {
-    question: "Who is behind TEAMZ?",
+    question: "How are Ments Services and TEAMZ related?",
     answer:
-      "TEAMZ is the product and development studio behind Ments (ments.app) and has built products such as Exatone, Freso (Dhaara), Cyinov Consulting, and Kay Sons. It operates as a subsidiary of Ments.",
+      "Ments Services is the technology services team at Ments. TEAMZ is our delivery team of designers and engineers. Clients engage Ments Services, and TEAMZ delivers their projects.",
   },
 ];
 
@@ -109,14 +121,12 @@ export const organizationLd = {
   "@type": "Organization",
   "@id": `${SITE_URL}/#organization`,
   name: SITE_NAME,
-  legalName: "TEAMZ",
-  alternateName: "Team-Z",
   url: SITE_URL,
   logo: {
     "@type": "ImageObject",
-    url: `${SITE_URL}/images/teamz-dark-logo.png`,
-    width: 512,
-    height: 512,
+    url: `${SITE_URL}/images/brand/ments-green.svg`,
+    width: 844,
+    height: 258,
   },
   image: `${SITE_URL}/opengraph-image`,
   description: SITE_DESCRIPTION,
@@ -127,7 +137,13 @@ export const organizationLd = {
     name: "Ments",
     url: "https://ments.app",
   },
-  sameAs: ["https://ments.app"],
+  department: {
+    "@type": "Organization",
+    "@id": `${SITE_URL}/#teamz`,
+    name: "TEAMZ",
+    description: "The design and engineering delivery team at Ments Services.",
+    url: `${SITE_URL}/about#team`,
+  },
   areaServed: { "@type": "Place", name: "Worldwide" },
   knowsAbout: [
     "Web Development",

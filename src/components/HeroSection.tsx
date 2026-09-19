@@ -4,19 +4,17 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import GetStartedDialog from "./GetStartedDialog";
+import { WHATSAPP_URL } from "@/lib/seo";
 
 const G = "#00DD88";
 
 export default function HeroSection() {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
     <>
       <div
         id="home"
-        className="w-full max-w-[1240px] min-h-[620px] rounded-[40px] relative text-white flex overflow-hidden shadow-[0_30px_60px_-25px_rgba(0,0,0,0.4)] mb-5 mx-auto scroll-mt-28 bg-[#0a0b0d] max-md:rounded-[28px] max-md:min-h-[640px]"
+        className="w-full max-w-[1240px] min-h-[540px] rounded-[40px] relative text-white flex overflow-hidden shadow-[0_30px_60px_-25px_rgba(0,0,0,0.4)] mb-16 mx-auto scroll-mt-28 bg-[#0a0b0d] max-md:rounded-[28px] max-md:min-h-[480px] max-md:mb-12"
       >
         {/* ===== Photo half-bleed — dissolves into the dark hero ===== */}
         <div className="pointer-events-none absolute inset-y-0 right-0 w-full lg:w-[62%]">
@@ -59,8 +57,8 @@ export default function HeroSection() {
         <div className="pointer-events-none absolute left-[20%] top-1/2 -translate-x-1/2 -translate-y-1/2 h-[440px] w-[520px] rounded-full bg-[#00DD88]/18 blur-[120px]" />
 
         {/* ===== Content ===== */}
-        <div className="relative z-10 w-full max-w-[1240px] mx-auto px-12 py-16 max-lg:py-20 max-md:px-6 max-md:py-16 flex items-center">
-          <div className="flex max-w-[560px] flex-col items-start text-left max-lg:mx-auto max-lg:items-center max-lg:text-center">
+        <div className="relative z-10 w-full max-w-[1240px] mx-auto px-12 py-16 max-md:px-6 max-md:py-12 flex items-center">
+          <div className="flex max-w-[620px] flex-col items-start text-left">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -68,9 +66,8 @@ export default function HeroSection() {
               className="flex items-center gap-3 mb-6"
             >
               <span className="h-2 w-2 rounded-full bg-[#00DD88] shadow-[0_0_10px_1px_rgba(0,221,136,0.7)]" />
-              <span className="text-[1.5rem] font-bold lowercase tracking-[-0.01em]">
-                <span className="text-white">team-</span>
-                <span className="text-[#00DD88]">z</span>
+              <span className="text-[1.1rem] font-semibold tracking-wide">
+                Ments Services
               </span>
             </motion.div>
 
@@ -78,50 +75,43 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-balance text-[3.6rem] font-semibold leading-[1.04] mb-6 tracking-[-2px] lg:text-[3.5rem] max-md:text-[2.5rem]"
+              className="text-balance text-[clamp(2.5rem,5vw,4.5rem)] font-semibold leading-[1.04] mb-6 tracking-[-0.04em]"
             >
-              We build digital products that{" "}
-              <span className="text-[#00DD88]">scale.</span>
+              Software that fits <span className="font-['Instrument_Serif',Georgia,serif] font-normal italic text-[#00DD88]">your business.</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-white/70 text-[1.1rem] leading-[1.6] max-w-[480px] mb-9 font-light max-md:text-base"
+              className="text-white/85 text-[1.05rem] leading-[1.6] max-w-[550px] mb-6 max-md:text-base"
             >
-              Turning ambitious ideas into products that grow users, drive
-              revenue, and scale with demand.
+              Launch products, simplify operations, and put AI to work—with one team from idea to ongoing support.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex gap-4 items-center max-md:flex-col max-md:w-full max-md:max-w-[320px]"
+              className="flex flex-wrap gap-x-7 gap-y-3 items-center"
             >
-              <button
-                onClick={() => setIsDialogOpen(true)}
-                className="group inline-flex items-center gap-2 bg-[#00DD88] text-[#0a0a0a] px-9 py-[18px] rounded-full font-semibold text-base transition-all duration-300 hover:shadow-[0_12px_34px_-8px_rgba(0,221,136,0.6)] hover:-translate-y-0.5 max-md:w-full max-md:justify-center"
+              <a
+                href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="Let's talk on WhatsApp"
+                className="group inline-flex items-center gap-2 bg-[#00DD88] text-[#0a0a0a] px-6 py-4 rounded-full font-semibold text-base transition-all duration-300 hover:shadow-[0_12px_34px_-8px_rgba(0,221,136,0.6)] hover:-translate-y-0.5"
               >
-                Get Started
+                Let's talk
                 <ArrowUpRight className="w-[18px] h-[18px] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </button>
+              </a>
               <Link
                 href="/projects"
-                className="inline-flex items-center gap-2 bg-white/[0.06] text-white border border-white/25 px-9 py-[18px] rounded-full font-medium text-base transition-all duration-300 hover:bg-white/[0.12] hover:border-white/50 max-md:w-full max-md:justify-center"
+                className="inline-flex min-h-11 items-center gap-2 text-white font-medium text-sm underline underline-offset-8 decoration-white/40 hover:decoration-[#00DD88]"
               >
-                View Our Work
+                See our work
               </Link>
             </motion.div>
           </div>
         </div>
 
-        {/* Get Started Dialog */}
-        <GetStartedDialog
-          isOpen={isDialogOpen}
-          onClose={() => setIsDialogOpen(false)}
-        />
       </div>
     </>
   );

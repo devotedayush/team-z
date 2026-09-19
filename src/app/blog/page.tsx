@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "Practical, no-hype guides on building and scaling digital products: app costs, MVP timelines, choosing a dev team, AI automation, and more.",
   alternates: { canonical: "/blog" },
   openGraph: {
-    title: "Insights & Guides for Founders | TEAMZ",
+    title: "Insights & Guides for Founders | Ments Services",
     description:
       "Practical, no-hype guides on building and scaling digital products.",
     url: "/blog",
@@ -23,7 +23,7 @@ const blogLd = {
   "@context": "https://schema.org",
   "@type": "Blog",
   "@id": `${SITE_URL}/blog#blog`,
-  name: "TEAMZ Insights",
+  name: "Ments Services Insights",
   description:
     "Practical, no-hype guides on building and scaling digital products.",
   url: `${SITE_URL}/blog`,

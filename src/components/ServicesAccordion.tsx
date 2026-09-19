@@ -1,203 +1,52 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Check, Plus } from "lucide-react";
 import { useState } from "react";
-import GetStartedDialog from "./GetStartedDialog";
-
-const services = [
-  {
-    number: "01",
-    title: "Web Development",
-    description:
-      "From marketing sites to full web apps, we design and build fast, scalable products that look sharp and actually convert. Clean code, strong SEO, and a smooth experience on every screen.",
-    offerings: [
-      "Custom websites and landing pages",
-      "Web apps and dashboards",
-      "E-commerce and storefronts",
-      "CMS setup so you can edit content yourself",
-      "Performance and SEO tuning",
-      "Responsive across mobile, tablet, and desktop",
-    ],
-  },
-  {
-    number: "02",
-    title: "App Development",
-    description:
-      "Native and cross-platform mobile apps built for real users. We take you from idea to a polished app, live on the App Store and Play Store.",
-    offerings: [
-      "iOS and Android apps",
-      "Mobile-first UI and UX design",
-      "Backend and API integration",
-      "Logins, payments, and push notifications",
-      "App Store and Play Store submission",
-      "Maintenance and updates after launch",
-    ],
-  },
-  {
-    number: "03",
-    title: "Product Design & Branding",
-    description:
-      "We shape how your product looks, feels, and is remembered, from the first wireframe to a full brand identity that stands out.",
-    offerings: [
-      "UX research and user flows",
-      "Wireframes and interactive prototypes",
-      "High-fidelity UI design",
-      "Brand identity: logo, colors, typography",
-      "Design systems and component libraries",
-      "Marketing and social media assets",
-    ],
-  },
-  {
-    number: "04",
-    title: "AI Automation",
-    description:
-      "We plug AI into your day-to-day so the repetitive work runs itself. Custom workflows, integrations, and assistants tailored to how you actually operate.",
-    offerings: [
-      "Custom workflow automation",
-      "AI chatbots and support assistants",
-      "Lead capture, follow-ups, and CRM sync",
-      "Document, email, and content automation",
-      "Integrations with your existing tools",
-      "Custom AI assistants tailored to you",
-    ],
-  },
-];
+import Link from "next/link";
+import { Check, Plus, ArrowUpRight } from "lucide-react";
+import { servicePaths } from "@/lib/service-paths";
+import StartProjectButton from "./StartProjectButton";
 
 export default function ServicesAccordion() {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-
   return (
-    <section
-      id="services"
-      className="w-full max-w-[1240px] pb-20 grid grid-cols-[0.85fr_1.15fr] gap-[60px] mx-auto px-4 max-lg:grid-cols-1 max-lg:gap-[40px] scroll-mt-24"
-    >
-      {/* ===== Left: intro ===== */}
-      <div className="lg:sticky lg:top-32 self-start">
-        <div className="flex items-center gap-2.5 mb-5">
-          <span className="h-[7px] w-[7px] rounded-full bg-[#00DD88]" />
-          <span className="uppercase tracking-[2px] text-[0.8rem] text-[#00A368] font-semibold">
-            Our Services
-          </span>
+    <section id="services" className="mx-auto mb-16 w-full max-w-[1240px] scroll-mt-28 px-4">
+      <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+        <div className="self-start lg:sticky lg:top-28">
+          <p className="mb-5 text-xs font-semibold uppercase tracking-[2px] text-[#008454]">How we can help</p>
+          <h2 className="text-[2.9rem] font-semibold leading-[1.1] tracking-tight text-[#1a1a1a] max-md:text-[2.1rem]">What brings you <span className="font-['Instrument_Serif',Georgia,serif] font-normal italic text-[#00A368]">here?</span></h2>
+          <p className="mt-5 max-w-[340px] text-base leading-relaxed text-[#666]">Choose your starting point. We'll help with the rest.</p>
         </div>
-        <h2 className="text-[2.9rem] leading-[1.1] font-semibold tracking-[-1.5px] text-[#1a1a1a] mb-6 max-md:text-[2.1rem]">
-          Everything your product needs,{" "}
-          <span className="whitespace-nowrap font-['Instrument_Serif',Georgia,serif] font-normal italic tracking-normal text-[#00A368]">
-            in one place.
-          </span>
-        </h2>
-        <p className="text-[#666] text-[1.05rem] leading-[1.65] mb-8 max-w-[400px]">
-          Skip hiring separate designers, developers, and AI specialists. We
-          handle it all, from raw idea to live product.
-        </p>
-        <button
-          onClick={() => setIsDialogOpen(true)}
-          className="group inline-flex items-center gap-2 bg-[#1a1a1a] text-white px-[26px] py-[13px] rounded-full font-semibold text-[0.95rem] transition-all duration-300 hover:bg-[#00A368] hover:-translate-y-0.5"
-        >
-          Start a Project
-          <ArrowUpRight className="w-[18px] h-[18px] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </button>
-      </div>
-
-      {/* ===== Right: accordion ===== */}
-      <div
-        className="flex flex-col gap-[14px] lg:pt-6"
-        onMouseLeave={() => setOpenIndex(null)}
-      >
-        {services.map((service, index) => {
-          const isOpen = openIndex === index;
-          return (
-            <motion.div
-              key={service.number}
-              onMouseEnter={() => setOpenIndex(index)}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.08 }}
-              viewport={{ once: true }}
-              className={`group rounded-[22px] bg-white border transition-all duration-300 ${
-                isOpen
-                  ? "border-[#00DD88] shadow-[0_20px_46px_-22px_rgba(0,221,136,0.5)]"
-                  : "border-[#eaeaea] shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:-translate-y-[3px] hover:border-[#d4d4d4] hover:shadow-[0_18px_38px_-20px_rgba(0,0,0,0.2)]"
-              }`}
-            >
-              <button
-                onClick={() => setOpenIndex(isOpen ? null : index)}
-                aria-expanded={isOpen}
-                className="flex w-full items-center justify-between gap-5 px-8 pt-[22px] pb-[16px] text-left max-md:px-6 max-md:py-5"
-              >
-                <div className="flex items-baseline gap-7 max-md:gap-4">
-                  <span
-                    className={`text-[0.85rem] font-semibold tabular-nums tracking-[1.5px] transition-colors duration-300 ${
-                      isOpen
-                        ? "text-[#00A368]"
-                        : "text-[#c4c4c4] group-hover:text-[#999]"
-                    }`}
-                  >
-                    {service.number}
-                  </span>
-                  <span
-                    className={`text-[1.45rem] font-semibold tracking-[-0.5px] transition-colors duration-300 max-md:text-[1.15rem] ${
-                      isOpen ? "text-[#1a1a1a]" : "text-[#1a1a1a] group-hover:text-[#00A368]"
-                    }`}
-                  >
-                    {service.title}
-                  </span>
+        <div className="space-y-4">
+          {servicePaths.map((service, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <div key={service.number} className={`overflow-hidden rounded-[24px] border bg-white transition-colors ${isOpen ? "border-[#00A368]/40" : "border-[#e0e0e0]"}`}>
+                <h3>
+                  <button type="button" onClick={() => setOpenIndex(isOpen ? null : index)} aria-expanded={isOpen} aria-controls={`service-panel-${service.number}`} id={`service-trigger-${service.number}`} className="flex w-full items-center justify-between gap-5 p-6 text-left max-md:p-5">
+                    <span>
+                      <span className="mb-2 block text-xs font-medium tracking-wider text-[#008454]">{service.number}</span>
+                      <span className="block text-[1.4rem] font-semibold leading-tight tracking-tight text-[#1a1a1a] max-md:text-xl">{service.title}</span>
+                    </span>
+                    <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-transform ${isOpen ? "rotate-45 bg-[#00DD88]" : "bg-[#f2f2f4]"}`}><Plus aria-hidden="true" className="h-5 w-5" /></span>
+                  </button>
+                </h3>
+                <div id={`service-panel-${service.number}`} role="region" aria-labelledby={`service-trigger-${service.number}`} hidden={!isOpen} className="px-6 pb-6 max-md:px-5">
+                  <p className="border-t border-[#eee] pt-5 leading-relaxed text-[#555]">{service.description}</p>
+                  <ul className="mt-4 grid gap-2">{service.offerings.slice(0, 3).map((item) => <li key={item} className="flex items-start gap-2 text-sm leading-relaxed text-[#444]"><Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-[#008454]" /><span>{item}</span></li>)}</ul>
+                  <div className="mt-5 border-t border-[#eee] pt-4">
+                    <div className="flex flex-col items-start gap-3">{service.proof.slice(0, 1).map((item) => <Link key={item.href} href={item.href} className="inline-flex items-center gap-1 text-sm font-medium text-[#444] underline decoration-[#00A368]/40 underline-offset-4 hover:text-[#008454]">{item.label}<ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5 shrink-0" /></Link>)}</div>
+                  </div>
+                  <StartProjectButton label="Let's talk about this" initialService={service.title} className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#0a0b0d] px-5 py-3 text-sm font-semibold text-white hover:bg-[#008454]" />
                 </div>
-                <span
-                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
-                    isOpen
-                      ? "rotate-45 border-transparent bg-[#00DD88] text-[#0a0a0a]"
-                      : "border-[#e5e5e5] bg-white text-[#1a1a1a] group-hover:border-[#1a1a1a]"
-                  }`}
-                >
-                  <Plus className="h-[18px] w-[18px]" />
-                </span>
-              </button>
-
-              <AnimatePresence initial={false}>
-                {isOpen && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                    className="overflow-hidden"
-                  >
-                    <div className="mx-8 border-t border-[#f0f0f0] pb-6 pt-[14px] pl-[58px] max-md:mx-6 max-md:pl-0">
-                      <p className="text-[#555] text-[1.02rem] leading-[1.55] max-w-[560px]">
-                        {service.description}
-                      </p>
-                      <p className="mt-5 mb-3 text-[0.72rem] font-semibold uppercase tracking-[1.5px] text-[#00A368]">
-                        What you get
-                      </p>
-                      <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5 max-w-[560px] max-sm:grid-cols-1">
-                        {service.offerings.map((item) => (
-                          <li
-                            key={item}
-                            className="flex items-start gap-2.5 text-[#444] text-[0.95rem] leading-[1.4]"
-                          >
-                            <Check
-                              className="mt-[2px] h-4 w-4 shrink-0 text-[#00A368]"
-                              strokeWidth={2.5}
-                            />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          );
-        })}
+              </div>
+            );
+          })}
+        </div>
       </div>
-
-      <GetStartedDialog
-        isOpen={isDialogOpen}
-        onClose={() => setIsDialogOpen(false)}
-      />
+      <details className="mt-8 border-y border-[#d9ddda] py-4">
+        <summary className="cursor-pointer py-2 text-sm font-medium text-[#555]">Explore our full capabilities</summary>
+        <div className="mt-4 flex flex-wrap gap-2">{["Web & mobile apps", "MVPs & prototypes", "UI/UX & branding", "Shopify & e-commerce", "SEO & performance", "Business platforms", "AI & automation", "Data & business consulting", "Maintenance & support"].map((capability) => <span key={capability} className="rounded-full bg-[#f2f2f4] px-3 py-2 text-sm text-[#555]">{capability}</span>)}</div>
+      </details>
     </section>
   );
 }

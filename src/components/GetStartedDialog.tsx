@@ -2,29 +2,27 @@
 
 import { CheckCircle, X } from "lucide-react";
 import { useState } from "react";
+import { inquiryServices as services } from "@/lib/service-paths";
 
 interface GetStartedDialogProps {
   isOpen: boolean;
   onClose: () => void;
+  initialService?: string;
+  inquiryContext?: string;
 }
-
-const services = [
-  "App Development",
-  "Product Design and Branding",
-  "Web Development",
-  "AI Automation",
-];
 
 export default function GetStartedDialog({
   isOpen,
   onClose,
+  initialService = "",
+  inquiryContext,
 }: GetStartedDialogProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     projectName: "",
-    services: [] as string[],
+    services: initialService ? [initialService] : [] as string[],
     preferredTiming: "",
     additionalNotes: "",
   });
@@ -66,7 +64,7 @@ export default function GetStartedDialog({
           projectName: formData.projectName,
           services: formData.services,
           preferredTiming: formData.preferredTiming,
-          additionalNotes: formData.additionalNotes,
+          additionalNotes: [inquiryContext ? `Interested in: ${inquiryContext}` : "", formData.additionalNotes].filter(Boolean).join("\n\n"),
         }),
       });
 
@@ -82,7 +80,7 @@ export default function GetStartedDialog({
         email: "",
         phone: "",
         projectName: "",
-        services: [],
+        services: initialService ? [initialService] : [],
         preferredTiming: "",
         additionalNotes: "",
       });
@@ -132,10 +130,10 @@ export default function GetStartedDialog({
               Thank You!
             </h2>
             <p className="text-white/70 text-lg mb-6 leading-relaxed">
-              We've received your inquiry and we will reach out to you soon.
+              Ments Services has received your inquiry. We will reach out to you soon.
             </p>
             <p className="text-white/60 text-sm mb-8">
-              Our team will review your project details and contact you at your preferred timing.
+              TEAMZ, our delivery team, will review your project details and contact you at your preferred timing.
             </p>
             <button
               onClick={handleClose}
@@ -153,8 +151,13 @@ export default function GetStartedDialog({
         >
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-white/10">
-            <h2 className="text-2xl font-semibold text-white">Get Started</h2>
+            <div>
+              <p className="mb-1 text-sm font-medium text-[#00DD88]">Ments Services</p>
+              <h2 className="text-2xl font-semibold text-white">Let&apos;s discuss your project</h2>
+              {inquiryContext && <p className="mt-2 text-sm text-white/70">{inquiryContext}</p>}
+            </div>
             <button
+              aria-label="Close enquiry form"
               onClick={handleClose}
               className="text-white/60 hover:text-white transition-colors duration-200"
             >
@@ -237,7 +240,7 @@ export default function GetStartedDialog({
               htmlFor="projectName"
               className="block text-sm font-medium text-white/80 mb-2"
             >
-              Project Name <span className="text-[#00DD88]">*</span>
+              What would you like to build or improve? <span className="text-[#00DD88]">*</span>
             </label>
             <input
               type="text"
@@ -247,14 +250,14 @@ export default function GetStartedDialog({
               value={formData.projectName}
               onChange={handleChange}
               className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#00DD88] focus:border-transparent transition-all"
-              placeholder="What's your project called?"
+              placeholder="A short description is enough"
             />
           </div>
 
           {/* Services */}
           <div>
             <label className="block text-sm font-medium text-white/80 mb-3">
-              Services You're Interested In <span className="text-[#00DD88]">*</span>
+              How can we help? <span className="text-[#00DD88]">*</span>
             </label>
             <div className="space-y-2">
               {services.map((service) => (
@@ -351,4 +354,3 @@ export default function GetStartedDialog({
     </div>
   );
 }
-

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import StartProjectButton from "@/components/StartProjectButton";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { projects } from "@/lib/data";
-import { SITE_URL, breadcrumbLd, jsonLdScript } from "@/lib/seo";
+import { SITE_NAME, SITE_URL, breadcrumbLd, jsonLdScript } from "@/lib/seo";
 
 interface ProjectPageProps {
   params: Promise<{
@@ -26,21 +27,23 @@ export async function generateMetadata({
   const project = projects.find((p) => p.id === parseInt(id));
   if (!project) return { title: "Project not found" };
 
-  const cover = (project as { cover?: string }).cover ?? project.image;
+  const cover = project.mockup || project.cover;
   return {
-    title: `${project.title}: ${project.tags.slice(0, 2).join(" & ")} Case Study`,
+    title: {
+      absolute: `${project.title}: ${project.tags.slice(0, 2).join(" & ")} Case Study | ${SITE_NAME}`,
+    },
     description: project.description,
     alternates: { canonical: `/projects/${project.id}` },
     openGraph: {
       type: "article",
-      title: `${project.title} | TEAMZ Case Study`,
+      title: `${project.title} | Ments Services Case Study`,
       description: project.description,
       url: `/projects/${project.id}`,
       images: cover ? [cover] : undefined,
     },
     twitter: {
       card: "summary_large_image",
-      title: `${project.title} | TEAMZ Case Study`,
+      title: `${project.title} | Ments Services Case Study`,
       description: project.description,
       images: cover ? [cover] : undefined,
     },
@@ -115,7 +118,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   // Detail page uses the full-frame original poster (cover) when available,
   // since the card scenes (…1.png) have empty copy-space on one side.
-  const cover = (project as { cover?: string }).cover ?? project.image;
+  const cover = project.mockup || project.cover;
 
   const projectLd = {
     "@context": "https://schema.org",
@@ -126,8 +129,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     url: `${SITE_URL}/projects/${project.id}`,
     image: cover ? `${SITE_URL}${cover}` : undefined,
     keywords: project.tags.join(", "),
-    creator: { "@id": `${SITE_URL}/#organization` },
-    provider: { "@id": `${SITE_URL}/#organization` },
+    creator: project.contributor ? { "@type": "Person", name: project.contributor, url: project.website } : { "@id": `${SITE_URL}/#organization` },
+    provider: project.contributor ? undefined : { "@id": `${SITE_URL}/#organization` },
     isPartOf: { "@id": `${SITE_URL}/#website` },
   };
 
@@ -160,7 +163,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <div className="mb-5 flex items-center gap-2.5">
             <span className="h-[7px] w-[7px] rounded-full bg-[#00DD88]" />
             <span className="text-[0.8rem] font-semibold uppercase tracking-[2px] text-[#00A368]">
-              Project Case Study
+              {project.category} · {project.status}
             </span>
           </div>
           <h1 className="mb-6 text-[3rem] font-semibold leading-[1.05] tracking-[-1.5px] text-[#1a1a1a] max-md:text-[2.2rem]">
@@ -171,17 +174,23 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </p>
           <div className="flex flex-wrap gap-2.5">
             {project.tags.map((tag) => (
-              <span
+              <Link
                 key={tag}
-                className="rounded-full border border-[#00DD88]/40 bg-[#00DD88]/10 px-4 py-2 text-sm font-medium text-[#00A368]"
+                href={`/projects?tag=${encodeURIComponent(tag)}`}
+                className="rounded-full border border-[#00DD88]/40 bg-[#00DD88]/10 px-4 py-2 text-sm font-medium text-[#008454] hover:bg-[#00DD88]/20"
               >
                 {tag}
-              </span>
+              </Link>
             ))}
+          </div>
+          <div className="mt-7 flex flex-wrap items-center justify-between gap-5 rounded-2xl border border-[#00A368]/20 bg-white p-6">
+            <div><p className="text-3xl font-semibold tracking-tight text-[#008454]">{project.highlight.value}</p><p className="mt-1 text-sm text-[#555]">{project.highlight.label}</p></div>
+            {project.website && <a href={project.website} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#0a0b0d] px-5 py-3 text-sm font-semibold text-white hover:bg-[#008454]">{project.contributor ? "View source portfolio" : "Visit website"} <ArrowUpRight aria-hidden="true" className="h-4 w-4" /></a>}
           </div>
         </div>
 
-        {cover ? (
+        {project.contributor && <p className="mb-6 rounded-2xl border border-[#008454]/20 bg-white p-5 text-sm leading-relaxed text-[#555]">Prior industry experience by {project.contributor}, now part of Ments Services. Results are reported in his portfolio; this was not originally delivered as a Ments Services engagement.</p>}
+        {project.gallery || project.contributor ? null : cover ? (
           <div className="w-full overflow-hidden rounded-[24px] bg-[#0a0b0d]">
             <Image
               src={cover}
@@ -205,7 +214,20 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
         )}
 
+        {project.imageCaption && <p className="mt-3 text-sm leading-relaxed text-[#666]">{project.imageCaption}</p>}
+
+        {project.gallery && (
+          <section className="mt-10" aria-label="Product screenshots">
+            <h2 className="text-2xl font-semibold tracking-tight">Inside the app</h2>
+            <p className="mb-6 mt-2 text-sm leading-relaxed text-[#666]">Genuine app captures using review-safe demo data.</p>
+            <div className="grid grid-cols-2 gap-5 max-sm:gap-3">
+              {project.gallery.map((shot) => <figure key={shot.src} className="overflow-hidden rounded-2xl border border-[#ddd] bg-white"><Image src={shot.src} alt={shot.alt} width={432} height={768} sizes="(max-width: 900px) 45vw, 420px" className="h-auto w-full" unoptimized /></figure>)}
+            </div>
+          </section>
+        )}
+
         <CaseStudyBody content={project.content} />
+        <div className="mt-12 rounded-3xl bg-white p-8"><h2 className="text-2xl font-semibold">Have a similar challenge?</h2><p className="mt-3 leading-relaxed text-[#666]">Tell us what you want to build or improve. We can help you define the next step.</p><StartProjectButton label="Discuss your project" /></div>
       </article>
     </main>
   );
