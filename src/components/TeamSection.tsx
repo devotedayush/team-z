@@ -21,7 +21,7 @@ export default function TeamSection() {
         {teamMembers.map((member) => (
           <article key={member.name} id={member.name === "Devansh Jain" ? "devansh-jain" : undefined} className="flex scroll-mt-28 flex-col overflow-hidden rounded-[24px] border border-[#e0e5e2] bg-white">
             <div className="relative aspect-[4/3] overflow-hidden bg-[#e6eee9]">
-              {member.image ? <Image src={member.image} alt={member.name} fill sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 400px" className="object-cover object-[center_30%]" unoptimized /> : <div aria-hidden="true" className="flex h-full items-center justify-center bg-[#163d30] font-['Instrument_Serif',Georgia,serif] text-8xl italic text-[#83e5b4]">DJ</div>}
+              {member.image ? <Image src={member.image} alt={member.name} fill sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 400px" className="object-cover object-[center_30%]" /> : <div aria-hidden="true" className="flex h-full items-center justify-center bg-[#163d30] font-['Instrument_Serif',Georgia,serif] text-8xl italic text-[#83e5b4]">DJ</div>}
             </div>
             <div className="flex flex-1 flex-col p-6">
               <h3 className="text-2xl font-semibold tracking-tight">{member.name}</h3>

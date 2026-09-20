@@ -200,7 +200,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               sizes="(max-width: 900px) 100vw, 860px"
               className="h-auto w-full"
               priority
-              unoptimized
             />
           </div>
         ) : (
@@ -221,7 +220,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <h2 className="text-2xl font-semibold tracking-tight">Inside the app</h2>
             <p className="mb-6 mt-2 text-sm leading-relaxed text-[#666]">Genuine app captures using review-safe demo data.</p>
             <div className="grid grid-cols-2 gap-5 max-sm:gap-3">
-              {project.gallery.map((shot) => <figure key={shot.src} className="overflow-hidden rounded-2xl border border-[#ddd] bg-white"><Image src={shot.src} alt={shot.alt} width={432} height={768} sizes="(max-width: 900px) 45vw, 420px" className="h-auto w-full" unoptimized /></figure>)}
+              {project.gallery.map((shot) => <figure key={shot.src} className="overflow-hidden rounded-2xl border border-[#ddd] bg-white"><Image src={shot.src} alt={shot.alt} width={432} height={768} sizes="(max-width: 900px) 45vw, 420px" className="h-auto w-full" /></figure>)}
             </div>
           </section>
         )}

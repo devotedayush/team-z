@@ -25,7 +25,6 @@ export default function HeroSection() {
             sizes="(max-width: 1024px) 100vw, 760px"
             className="object-cover object-center brightness-[0.8] contrast-[1.05] saturate-[0.95]"
             priority
-            unoptimized
           />
           {/* Soft green wash to match the brand */}
           <div

@@ -87,7 +87,6 @@ export default function BlogIndexPage() {
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 380px"
                     className="scale-110 object-cover blur-2xl brightness-[0.45]"
-                    unoptimized
                   />
                   <Image
                     src={post.image}
@@ -95,7 +94,6 @@ export default function BlogIndexPage() {
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 380px"
                     className="object-contain transition-transform duration-500 group-hover:scale-[1.04]"
-                    unoptimized
                   />
                 </>
               ) : (
@@ -105,7 +103,6 @@ export default function BlogIndexPage() {
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 380px"
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                  unoptimized
                 />
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-black/30" />

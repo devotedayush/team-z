@@ -30,7 +30,6 @@ export default function HeroTeam() {
           sizes="(max-width: 1024px) 90vw, 520px"
           className="h-full w-full object-cover brightness-[0.82] contrast-[1.04] saturate-[0.92]"
           priority
-          unoptimized
         />
         {/* Soft green wash */}
         <div
