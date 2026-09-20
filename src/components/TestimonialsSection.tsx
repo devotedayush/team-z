@@ -13,16 +13,17 @@ type Testimonial = {
   avatar?: string; // optional real photo in /public/images/testimonials
 };
 
-// Edited for clarity from client feedback supplied by Ments Services.
+// Samrat's quote is verbatim; the remaining feedback was edited for clarity.
 // The portfolio client's name and the logistics client's company were not supplied.
 const testimonials: Testimonial[] = [
   {
     quote:
-      "We asked TEAMZ to build a website for our brand, and they captured our vision better than we had imagined. They were responsive, welcomed our feedback, and delivered in a remarkably short time. The finished website received so much appreciation from our team and professional network. We couldn't be happier with the result.",
+      "Excellent work on our website. Your professionalism, attention to detail, and understanding of our requirements resulted in a modern, professional, and user-friendly website. Highly recommended for quality and reliable web development services.",
     name: "Samrat Anand",
     role: "Founder",
     company: "Cyinov Consulting",
     initials: "SA",
+    avatar: "/images/testimonials/samrat-anand.png",
   },
   {
     quote:
@@ -113,6 +114,7 @@ export default function TestimonialsSection() {
                       src={t.avatar}
                       alt={t.name}
                       fill
+                      sizes="48px"
                       className="object-cover"
                     />
                   </span>
