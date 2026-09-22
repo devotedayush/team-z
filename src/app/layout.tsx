@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
@@ -13,6 +14,7 @@ import {
 } from "@/lib/seo";
 
 const TITLE_DEFAULT = `${SITE_NAME}: ${SITE_TAGLINE}`;
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -73,6 +75,7 @@ export default function RootLayout({
         {children}
         <FloatingWhatsApp />
       </body>
+      {GA_MEASUREMENT_ID ? <GoogleAnalytics gaId={GA_MEASUREMENT_ID} /> : null}
     </html>
   );
 }
