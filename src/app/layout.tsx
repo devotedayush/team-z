@@ -14,7 +14,10 @@ import {
 } from "@/lib/seo";
 
 const TITLE_DEFAULT = `${SITE_NAME}: ${SITE_TAGLINE}`;
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+// A GA4 Measurement ID is public configuration. Amplify can override it at
+// build time if this site ever moves to a different Analytics property.
+const GA_MEASUREMENT_ID =
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-LWVGFWQP0T";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -75,7 +78,7 @@ export default function RootLayout({
         {children}
         <FloatingWhatsApp />
       </body>
-      {GA_MEASUREMENT_ID ? <GoogleAnalytics gaId={GA_MEASUREMENT_ID} /> : null}
+      <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
     </html>
   );
 }
